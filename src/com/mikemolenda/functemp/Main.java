@@ -28,12 +28,17 @@ public class Main {
 
     /* Calculate the average of the values in an array of ints */
     private static double avgArray(int[] arr) {
-        return (double) sumArray(arr) / (arr.length - 1);
+        return divide(sumArray(arr), (arr.length - 1));
     }
 
     /* Add two ints */
     private static int sum(int a, int b) {
         return a + b;
+    }
+
+    /* Divide the first int by the second */
+    private static double divide(int a, int b) {
+        return (double) a / b;
     }
 
 }

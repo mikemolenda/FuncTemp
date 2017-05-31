@@ -20,10 +20,10 @@ public class Main {
         System.out.println(avgArray(weather.get(0).getAvgHighTemps()));
     }
 
-    /* Recursively calculate the sum of the elements of an array */
+    /* Recursively calculate the sum of the elements of an array of ints */
     private static int sumArray(int currentTotal, int[] arr) {
         // Add first int of array to running total
-        currentTotal += arr[0];
+        currentTotal = sum(currentTotal, arr[0]);
 
         // Remove first int of array
         int[] remain = Arrays.copyOfRange(arr, 1, arr.length);
@@ -37,9 +37,14 @@ public class Main {
 
     }
 
-
+    /* Calculate the average of the values in an array of ints */
     private static double avgArray(int[] arr) {
         return (double) sumArray(0, arr) / (arr.length - 1);
+    }
+
+    /* Add two ints */
+    private static int sum(int a, int b) {
+        return a + b;
     }
 
 }

@@ -16,30 +16,19 @@ public class Main {
         weather.add(new CityWeather("Miami", 41.881832, -87.623177, new int[]{76, 78, 80, 83, 87, 89, 91, 91, 89, 86, 82, 78}));
         weather.add(new CityWeather("Anchorage", 61.169, -150.028, new int[]{23, 27, 34, 44, 56, 63, 65, 64, 55, 40, 28, 25}));
 
-        System.out.println(sumArray(0, weather.get(0).getAvgHighTemps()));
+        System.out.println(sumArray(weather.get(0).getAvgHighTemps()));
         System.out.println(avgArray(weather.get(0).getAvgHighTemps()));
     }
 
-    /* Recursively calculate the sum of the elements of an array of ints */
-    private static int sumArray(int currentTotal, int[] arr) {
-        // Add first int of array to running total
-        currentTotal = sum(currentTotal, arr[0]);
-
-        // Remove first int of array
-        int[] remain = Arrays.copyOfRange(arr, 1, arr.length);
-
-        // If any elements left in array, recursively call function
-        if (remain.length > 0) {
-            return sumArray(currentTotal, remain);
-        } else {
-            return currentTotal;
-        }
-
+    /* Calculates the sum of the elements of an array of ints */
+    private static int sumArray(int[] arr) {
+        // Use stream reduce to sum the elements of the array, with a reference to sum()
+        return Arrays.stream(arr).reduce(0, Main::sum);
     }
 
     /* Calculate the average of the values in an array of ints */
     private static double avgArray(int[] arr) {
-        return (double) sumArray(0, arr) / (arr.length - 1);
+        return (double) sumArray(arr) / (arr.length - 1);
     }
 
     /* Add two ints */
